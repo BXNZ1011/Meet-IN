@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet-IN - AI Meeting & Fashion Assistant</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">Meet-IN</div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#meetings">Meetings</a></li>
+          <li><a href="#wardrobe">Wardrobe</a></li>
+          <li><a href="#outfit-gen">Outfit Generator</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Arrange Meetings & Outfits Intelligently</h1>
+      <p>AI-powered assistant for perfect scheduling and fashion coordination</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary">Schedule a Meeting</button>
+        <button class="btn btn-secondary">Build Your Wardrobe</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meetings Section -->
+  <section id="meetings" class="section">
+    <div class="container">
+      <h2>Smart Meeting Scheduler</h2>
+      <p>Let AI find the perfect time for your meetings</p>
+      <form class="meeting-form" id="meetingForm">
+        <input type="text" placeholder="Meeting Title" required>
+        <input type="text" placeholder="Attendees" required>
+        <input type="date" required>
+        <button type="submit" class="btn btn-primary">Find Best Time</button>
+      </form>
+      <div class="meeting-results" id="meetingResults"></div>
+    </div>
+  </section>
+
+  <!-- Wardrobe Section -->
+  <section id="wardrobe" class="section">
+    <div class="container">
+      <h2>Virtual Wardrobe</h2>
+      <p>Upload photos of your clothes and let AI organize them</p>
+      <div class="upload-box" id="uploadBox">
+        <p>Drag & Drop Clothes Here</p>
+      </div>
+      <div class="wardrobe-items" id="wardrobeItems"></div>
+    </div>
+  </section>
+
+  <!-- Outfit Generator -->
+  <section id="outfit-gen" class="section">
+    <div class="container">
+      <h2>Outfit Generator</h2>
+      <p>Get AI-powered outfit recommendations</p>
+      <button class="btn btn-primary" id="generateBtn">Generate Outfit</button>
+      <div class="outfit-result" id="outfitResult"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Meet-IN | AI Assistant for Meetings & Fashion</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
