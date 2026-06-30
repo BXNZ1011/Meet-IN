@@ -1,77 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meet-IN - AI Meeting & Fashion Assistant</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="stylesheet.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#4f6ef4" />
+  <link rel="apple-touch-icon" href="icons/icon-192.svg" />
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
-    <div class="container">
+    <div class="container header-inner">
       <div class="logo">Meet-IN</div>
       <nav class="nav">
         <ul>
+          <li><a href="#dashboard">Home</a></li>
           <li><a href="#meetings">Meetings</a></li>
           <li><a href="#wardrobe">Wardrobe</a></li>
-          <li><a href="#outfit-gen">Outfit Generator</a></li>
-          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#outfit-gen">Outfit</a></li>
+          <li><a href="#about">About</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
-    <div class="container">
-      <h1>Arrange Meetings & Outfits Intelligently</h1>
-      <p>AI-powered assistant for perfect scheduling and fashion coordination</p>
-      <div class="hero-buttons">
-        <button class="btn btn-primary">Schedule a Meeting</button>
-        <button class="btn btn-secondary">Build Your Wardrobe</button>
+    <div class="container hero-grid">
+      <div>
+        <h1>Meet-IN</h1>
+        <p>Schedule meetings, choose the right outfit, and preview the location on a map — all in one smart web app.</p>
+        <div class="hero-buttons">
+          <a href="#meetings" class="btn btn-primary">Schedule a Meeting</a>
+          <a href="#outfit-gen" class="btn btn-secondary">Style an Outfit</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h2>Fast Fashion & Meeting Planning</h2>
+        <p>Meet-IN recommends clothing choices based on your meeting type, weather, and wardrobe.</p>
       </div>
     </div>
   </section>
 
-  <!-- Meetings Section -->
+  <section id="dashboard" class="section dashboard-section">
+    <div class="container">
+      <h2>Dashboard</h2>
+      <p>Quick view of your next meetup, wardrobe status, and local weather.</p>
+      <div class="dashboard-grid">
+        <article class="dashboard-card">
+          <h3>Next Meeting</h3>
+          <p id="nextMeetingCard">No upcoming meetings yet.</p>
+          <p id="meetingCountdown" class="meeting-countdown"></p>
+        </article>
+        <article class="dashboard-card">
+          <h3>Wardrobe Count</h3>
+          <p id="wardrobeCount">0 items uploaded</p>
+        </article>
+        <article class="dashboard-card weather-card">
+          <h3>Local Weather</h3>
+          <p id="weatherStatus">Tap the button to load your current weather.</p>
+          <button class="btn btn-secondary" id="weatherBtn">Get Weather</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="meetings" class="section">
     <div class="container">
-      <h2>Smart Meeting Scheduler</h2>
-      <p>Let AI find the perfect time for your meetings</p>
+      <div class="section-heading">
+        <h2>Smart Meeting Scheduler</h2>
+        <p>Organize meetings with event-aware outfit tips, guest invites, and location preview.</p>
+      </div>
       <form class="meeting-form" id="meetingForm">
-        <input type="text" placeholder="Meeting Title" required>
-        <input type="text" placeholder="Attendees" required>
-        <input type="date" required>
-        <button type="submit" class="btn btn-primary">Find Best Time</button>
+        <div class="form-row">
+          <input type="text" name="title" placeholder="Meeting Title" required />
+          <input type="text" name="attendees" placeholder="Attendees" required />
+        </div>
+        <div class="form-row">
+          <input type="text" name="inviteEmails" placeholder="Invite emails (comma-separated)" />
+          <select name="eventType" required>
+            <option value="business">Business Meeting</option>
+            <option value="casual">Casual Meetup</option>
+            <option value="date">Date Night</option>
+            <option value="interview">Interview</option>
+            <option value="outdoor">Outdoor Event</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <input type="text" name="location" placeholder="Location (address or venue)" required />
+          <input type="date" name="date" required />
+        </div>
+        <div class="form-row">
+          <input type="time" name="time" required />
+          <input type="text" name="notes" placeholder="Notes" />
+        </div>
+        <button type="submit" class="btn btn-primary">Save Meeting</button>
       </form>
+      <div class="meeting-toolbar">
+        <div class="toolbar-row">
+          <input type="text" id="meetingSearch" placeholder="Search meetings" />
+          <select id="meetingFilter">
+            <option value="all">All event types</option>
+            <option value="business">Business</option>
+            <option value="casual">Casual</option>
+            <option value="date">Date Night</option>
+            <option value="interview">Interview</option>
+            <option value="outdoor">Outdoor</option>
+          </select>
+        </div>
+        <button class="btn btn-secondary" id="showAllMeetings">Show All</button>
+      </div>
       <div class="meeting-results" id="meetingResults"></div>
     </div>
   </section>
 
-  <!-- Wardrobe Section -->
   <section id="wardrobe" class="section">
     <div class="container">
-      <h2>Virtual Wardrobe</h2>
-      <p>Upload photos of your clothes and let AI organize them</p>
+      <div class="section-heading">
+        <h2>Virtual Wardrobe</h2>
+        <p>Upload clothing photos, categorize items automatically, and manage your style inventory.</p>
+      </div>
       <div class="upload-box" id="uploadBox">
-        <p>Drag & Drop Clothes Here</p>
+        <p>Drag & drop clothes here or click to upload image files.</p>
       </div>
       <div class="wardrobe-items" id="wardrobeItems"></div>
     </div>
   </section>
 
-  <!-- Outfit Generator -->
   <section id="outfit-gen" class="section">
     <div class="container">
-      <h2>Outfit Generator</h2>
-      <p>Get AI-powered outfit recommendations</p>
-      <button class="btn btn-primary" id="generateBtn">Generate Outfit</button>
+      <div class="section-heading">
+        <h2>Outfit Generator</h2>
+        <p>Create full outfits from your wardrobe based on event type and weather.</p>
+      </div>
+      <div class="outfit-controls">
+        <div class="form-row">
+          <select id="eventStyle">
+            <option value="business">Business Meeting</option>
+            <option value="casual">Casual Meetup</option>
+            <option value="date">Date Night</option>
+            <option value="interview">Interview</option>
+            <option value="outdoor">Outdoor Event</option>
+          </select>
+          <select id="weatherStyle">
+            <option value="sunny">Sunny</option>
+            <option value="cloudy">Cloudy</option>
+            <option value="rainy">Rainy</option>
+            <option value="cold">Cold</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="generateBtn">Generate Outfit</button>
+      </div>
       <div class="outfit-result" id="outfitResult"></div>
+      <div class="saved-outfits" id="savedOutfits"></div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2>Why Meet-IN?</h2>
+      <p>Meet-IN combines scheduling, style recommendations, wardrobe management, and location preview in one polished experience.</p>
+      <ul class="feature-list">
+        <li>Event-aware outfit recommendations</li>
+        <li>Wardrobe photo upload with automatic categorization</li>
+        <li>Local weather integration and map view</li>
+        <li>Saved outfits, search, and meeting filters</li>
+      </ul>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="container">
       <p>&copy; 2026 Meet-IN | AI Assistant for Meetings & Fashion</p>
@@ -79,5 +176,16 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then((reg) => {
+          console.log('Service worker registered.', reg.scope);
+        }).catch((err) => {
+          console.warn('Service worker registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
